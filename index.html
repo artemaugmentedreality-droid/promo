@@ -32,14 +32,16 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            background: transparent; /* Asegura que el contenedor no tenga fondo */
+            align-items: center;
         }
         
         .header-logo img { 
-            width: 180px; 
+            width: 220px; /* Ajustado ligeramente el tamaño */
             height: auto;
             display: block;
-            background-color: transparent !important; /* Elimina cualquier fondo blanco residual */
+            border: none;
+            outline: none;
+            background: transparent !important;
         }
 
         .container { 
@@ -163,7 +165,7 @@
 <body>
 
     <div class="header-logo">
-        <img src="logotipo.PNG" alt="Artem Digital">
+        <img src="logotipo.PNG" alt="Artem Digital" onerror="this.src='logotipo.png'">
     </div>
 
     <div class="container">
