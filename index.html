@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* --- AJUSTE DEL LOGO --- */
         .header-logo { 
             margin-top: 40px; 
             margin-bottom: 20px;
@@ -36,14 +34,11 @@
         }
         
         .header-logo img { 
-            width: 200px; /* Tamaño ideal */
+            width: 200px; 
             height: auto;
             display: block;
-            /* Eliminamos cualquier borde o fondo que el navegador ponga por error */
             background: transparent !important;
-            border: none;
         }
-        /* ------------------------ */
 
         .container { 
             width: 90%; 
@@ -179,12 +174,12 @@
 
     <div id="modal-ganador" class="overlay">
         <div class="modal">
-            <h2 style="margin: 0; font-size: 26px; font-weight: 900;">¡FELICIDADES!</h2>
-            <p style="margin: 10px 0; color: #444;">Tu premio es:</p>
+            <h2 id="titulo-modal" style="margin: 0; font-size: 26px; font-weight: 900;">¡FELICIDADES!</h2>
+            <p id="texto-intro" style="margin: 10px 0; color: #444;">Tu premio es:</p>
             <img id="img-premio-modal" src="" class="premio-final-img">
             <h3 id="nombre-premio" style="font-size: 18px; margin: 5px 0 20px 0;"></h3>
             
-            <button class="btn-cta" style="background: #25D366; color: white; width: 100%; margin: 0;" onclick="reclamarPremio()">
+            <button id="btn-whatsapp" class="btn-cta" style="background: #25D366; color: white; width: 100%; margin: 0;" onclick="reclamarPremio()">
                 RECLAMAR EN WHATSAPP
             </button>
 
@@ -282,14 +277,35 @@
         }
 
         function mostrarGanador() {
+            const titulo = document.getElementById('titulo-modal');
+            const intro = document.getElementById('texto-intro');
+            const btn = document.getElementById('btn-whatsapp');
+
+            if (ganadorActual.id === 'sinpremio') {
+                titulo.innerText = "¡OH NO!";
+                intro.innerText = "No ganaste esta vez, pero tenemos una gran propuesta para ti:";
+                btn.innerText = "CONTACTAR POR WHATSAPP";
+            } else {
+                titulo.innerText = "¡FELICIDADES!";
+                intro.innerText = "Tu premio es:";
+                btn.innerText = "RECLAMAR EN WHATSAPP";
+            }
+
             document.getElementById('nombre-premio').innerText = ganadorActual.nombre;
             document.getElementById('img-premio-modal').src = ganadorActual.img;
             document.getElementById('modal-ganador').style.display = 'flex';
         }
 
         function reclamarPremio() {
-            const msg = encodeURIComponent(`¡Hola! Gané "${ganadorActual.nombre}" en el Rasca y Gana. ¿Cómo lo canjeo?`);
-            window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
+            let mensaje;
+            if (ganadorActual.id === 'sinpremio') {
+                mensaje = "No gané, igual me interesa conocer una propuesta.";
+            } else {
+                mensaje = `¡Hola! Gané "${ganadorActual.nombre}" en el Rasca y Gana. ¿Cómo lo canjeo?`;
+            }
+            
+            const url = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
         }
 
         window.onload = inicializarJuego;
