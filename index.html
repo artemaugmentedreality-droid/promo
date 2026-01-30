@@ -32,10 +32,14 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            background: transparent; /* Asegura que el contenedor no tenga fondo */
         }
+        
         .header-logo img { 
             width: 180px; 
             height: auto;
+            display: block;
+            background-color: transparent !important; /* Elimina cualquier fondo blanco residual */
         }
 
         .container { 
@@ -138,7 +142,6 @@
             margin: 15px 0; 
         }
 
-        /* Estilo Aviso de Privacidad */
         .aviso-privacidad {
             font-size: 10px;
             color: #888;
@@ -160,7 +163,7 @@
 <body>
 
     <div class="header-logo">
-        <img src="logotipo.webp" alt="Artem Digital">
+        <img src="logotipo.PNG" alt="Artem Digital">
     </div>
 
     <div class="container">
