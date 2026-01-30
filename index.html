@@ -26,23 +26,24 @@
             overflow-x: hidden;
         }
 
+        /* --- AJUSTE DEL LOGO --- */
         .header-logo { 
             margin-top: 40px; 
             margin-bottom: 20px;
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
         
         .header-logo img { 
-            width: 220px; /* Ajustado ligeramente el tamaño */
+            width: 200px; /* Tamaño ideal */
             height: auto;
             display: block;
-            border: none;
-            outline: none;
+            /* Eliminamos cualquier borde o fondo que el navegador ponga por error */
             background: transparent !important;
+            border: none;
         }
+        /* ------------------------ */
 
         .container { 
             width: 90%; 
@@ -117,7 +118,6 @@
             text-transform: uppercase;
         }
 
-        /* Modal */
         .overlay { 
             display: none; 
             position: fixed; 
@@ -165,7 +165,7 @@
 <body>
 
     <div class="header-logo">
-        <img src="logotipo.PNG" alt="Artem Digital" onerror="this.src='logotipo.png'">
+        <img src="logotipo.png" alt="Artem Digital">
     </div>
 
     <div class="container">
